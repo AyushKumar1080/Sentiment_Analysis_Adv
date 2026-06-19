@@ -1,0 +1,23 @@
+# Data Processing
+
+numpy
+pandas
+
+# Machine Learning & Deep Learning
+
+tensorflow
+scikit-learn
+joblib
+
+# Data Visualization
+
+matplotlib
+
+# Web Application & Deployment
+
+streamlit
+
+# API Development
+
+fastapi
+pydantic
