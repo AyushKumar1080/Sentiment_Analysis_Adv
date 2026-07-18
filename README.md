@@ -1,107 +1,133 @@
-# Aspect-Based Sentiment Analysis (ABSA)
+# Aspect-Based Sentiment Analysis using Groq LLM & BiLSTM
 
-An Aspect-Based Sentiment Analysis (ABSA) application built using **Bidirectional LSTM (BiLSTM)** and **TensorFlow**. The project predicts sentiment for a user-specified aspect within a review and provides real-time inference through a **FastAPI** backend and an interactive **Streamlit** web application.
+An intelligent **Aspect-Based Sentiment Analysis (ABSA)** system that combines the power of a **Large Language Model (Groq Llama 3.3)** for automatic aspect extraction with a **Bidirectional LSTM (BiLSTM)** model for aspect-wise sentiment classification.
 
----
-
-## Overview
-
-Traditional sentiment analysis predicts the overall sentiment of a review. In contrast, **Aspect-Based Sentiment Analysis (ABSA)** identifies the sentiment associated with a specific aspect mentioned in the text.
-
-### Example
-
-**Review**
-
-> The laptop performance is excellent, but the battery life is disappointing.
-
-| Aspect | Predicted Sentiment |
-|---------|---------------------|
-| Performance | Positive |
-| Battery Life | Negative |
-
-This enables fine-grained sentiment analysis, making the model suitable for product review analysis, customer feedback mining, and opinion analysis.
+The application provides an interactive **Streamlit** interface and a **FastAPI** backend for real-time sentiment analysis of product reviews.
 
 ---
 
-## Features
+# Overview
 
-- Aspect-Based Sentiment Analysis
-- Deep Learning using **Bidirectional LSTM (BiLSTM)**
-- FastAPI REST API for model inference
-- Interactive Streamlit web interface
-- Real-time sentiment prediction
-- Confidence score for each prediction
-- Clean and responsive user interface
+Traditional sentiment analysis predicts the overall sentiment of an entire review.
+
+Aspect-Based Sentiment Analysis (ABSA) identifies the sentiment associated with individual aspects mentioned in a review.
+
+Unlike conventional ABSA applications where users manually provide the aspect, this project automatically extracts product aspects using **Groq Llama 3.3** before classifying their sentiments using a trained **BiLSTM** model.
 
 ---
 
-## Tech Stack
+# Features
 
-### Programming Language
+- Automatic Aspect Extraction using Groq LLM
+- Aspect-wise Sentiment Classification using BiLSTM
+- Real-time inference using FastAPI
+- Interactive Streamlit Web Application
+- Confidence score for every prediction
+- Handles multiple aspects from a single review
+- Clean and responsive UI
+
+---
+
+# Example
+
+### User Input
+
+```text
+The battery is excellent, but the display is dull and the speakers are average.
+```
+
+### Automatically Extracted Aspects
+
+```text
+Battery
+Display
+Speakers
+```
+
+### Output
+
+| Aspect | Sentiment | Confidence |
+|---------|-----------|------------|
+| Battery | Positive | 98.7% |
+| Display | Negative | 96.3% |
+| Speakers | Neutral | 91.5% |
+
+---
+
+# Project Workflow
+
+```text
+                 Product Review
+                        │
+                        ▼
+           Groq Llama 3.3 (LLM)
+        Automatic Aspect Extraction
+                        │
+                        ▼
+          battery, display, speakers
+                        │
+                        ▼
+        Sentence + [SEP] + Aspect
+                        │
+                        ▼
+      Bidirectional LSTM (TensorFlow)
+                        │
+                        ▼
+      Aspect-wise Sentiment Prediction
+                        │
+                        ▼
+            Streamlit Dashboard
+```
+
+---
+
+# Tech Stack
+
+## Programming Language
 
 - Python
 
-### Deep Learning
+## Large Language Model
+
+- Groq API
+- Llama 3.3 70B Versatile
+
+## Deep Learning
 
 - TensorFlow
 - Bidirectional LSTM (BiLSTM)
 
-### Data Processing
+## Backend
+
+- FastAPI
+- Pydantic
+
+## Frontend
+
+- Streamlit
+
+## Data Processing
 
 - Pandas
 - NumPy
 - Scikit-learn
 
-### Backend
-
-- FastAPI
-- Pydantic
-
-### Frontend
-
-- Streamlit
-
-### Utilities
+## Utilities
 
 - Joblib
+- python-dotenv
 
 ---
 
-## Project Architecture
+# Dataset
 
-```
-                User Input
-                     │
-                     ▼
-             Streamlit Frontend
-                     │
-                     ▼
-               FastAPI Backend
-                     │
-                     ▼
-      Text Preprocessing Pipeline
-                     │
-                     ▼
-      Bidirectional LSTM Model
-                     │
-                     ▼
-      Sentiment Prediction
-                     │
-                     ▼
-     Confidence Score + Result
-```
+The model is trained on an Aspect-Based Sentiment Analysis dataset containing
 
----
-
-## Dataset
-
-The model is trained on a labeled Aspect-Based Sentiment Analysis dataset containing:
-
-- Review Text
-- Aspect
+- Review Sentence
+- Aspect Term
 - Sentiment Label
 
-### Supported Sentiment Classes
+### Supported Sentiments
 
 - Positive
 - Negative
@@ -109,46 +135,104 @@ The model is trained on a labeled Aspect-Based Sentiment Analysis dataset contai
 
 ---
 
-## Example Prediction
+# Model Architecture
 
-### Input
-
-```text
-Review:
-The laptop performance is amazing but the battery life is poor.
-
-Aspect:
-battery life
+```
+Input Review
+      │
+      ▼
+Tokenizer
+      │
+      ▼
+Embedding Layer
+      │
+      ▼
+Bidirectional LSTM
+      │
+      ▼
+Dense Layer
+      │
+      ▼
+Softmax
 ```
 
-### Output
+The BiLSTM model receives inputs in the following format:
 
-```text
-Predicted Sentiment: Negative
-Confidence Score: 94%
+```
+Review [SEP] Aspect
+```
+
+Example:
+
+```
+The battery is excellent but the display is poor [SEP] battery
 ```
 
 ---
 
-## Future Improvements
+# Running the Project
 
-- Integrate Transformer-based models (BERT, RoBERTa)
-- Support multiple aspect prediction
-- Explainable AI (Attention Visualization / SHAP)
-- Docker containerization
-- Cloud deployment (AWS, Azure, or GCP)
-- Batch prediction API
+## Clone Repository
+
+```bash
+git clone https://github.com/AyushKumar1080/Sentiment_Analysis_Adv.git
+
+cd Sentiment_Analysis_Adv
+```
+
+## Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+## Create a `.env` file
+
+```text
+GROQ_API_KEY=your_groq_api_key
+```
+
+## Start FastAPI
+
+```bash
+uvicorn app.main:app --reload
+```
+
+API:
+
+```
+http://127.0.0.1:8000
+```
+
+## Start Streamlit
+
+```bash
+streamlit run app/frontend.py
+```
+
 
 ---
 
-## Author
+# Future Improvements
+
+- Replace BiLSTM with BERT/RoBERTa
+- Docker deployment
+- AWS deployment
+- Batch prediction
+- Multi-language sentiment analysis
+
+---
+
+# Author
 
 **Ayush Kumar**
 
-B.Tech, Computer Science & Engineering
+B.Tech – Computer Science & Engineering
 
 National Institute of Technology (NIT) Durgapur
 
 GitHub: https://github.com/AyushKumar1080
 
 LinkedIn: https://www.linkedin.com/in/ayush-kumar-421b65284/
+
+---
