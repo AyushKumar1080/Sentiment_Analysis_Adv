@@ -130,25 +130,6 @@ Confidence Score: 94%
 
 ---
 
-## Project Structure
-
-```
-Sentiment_Analysis_Adv/
-│
-├── backend/
-├── frontend/
-├── models/
-├── notebooks/
-├── utils/
-├── requirements.txt
-├── README.md
-└── app.py
-```
-
-*(Modify the structure above to match your repository.)*
-
----
-
 ## Future Improvements
 
 - Integrate Transformer-based models (BERT, RoBERTa)
