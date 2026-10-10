@@ -25,3 +25,5 @@ uvicorn
 
 # LLM API
 groq
+
+dotenv
