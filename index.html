@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aspect-Based Sentiment Analysis</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+    <h1>Aspect-Based Sentiment Analysis</h1>
+    <p>Analyze product reviews and identify sentiment for each aspect.</p>
+
+    <form id="sentimentForm">
+        <label for="review">Enter Product Review:</label>
+        <br><br>
+
+        <textarea id="review" name="review" rows="5" cols="50"
+            placeholder="Example: The battery is excellent, but the display is dull." required></textarea>
+
+        <br><br>
+
+        <button type="submit">Analyze Sentiment</button>
+    </form>
+
+    <p id="status"></p>
+
+    <div id="results" hidden>
+        <h2>Sentiment Results</h2>
+
+        <table border="1" cellpadding="8">
+            <thead>
+                <tr>
+                    <th>Aspect</th>
+                    <th>Sentiment</th>
+                    <th>Confidence</th>
+                </tr>
+            </thead>
+
+            <tbody id="resultsBody">
+                <!-- Results will be added here later using JavaScript -->
+            </tbody>
+        </table>
+    </div>
+    <script src="/static/script.js"></script>
+</body>
+
+</html>

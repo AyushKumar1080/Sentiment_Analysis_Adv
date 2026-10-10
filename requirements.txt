@@ -1,26 +1,27 @@
 # Data Processing
-
 numpy
 pandas
 
-# Machine Learning & Deep Learning
-
-tensorflow
+# Machine Learning
 scikit-learn
 joblib
 
-# Data Visualization
+# Deep Learning
+tensorflow
 
+# Natural Language Processing
+nltk
+
+# Data Visualization
 matplotlib
 
-# Web Application & Deployment
-
+# Web Application
 streamlit
 
 # API Development
-
 fastapi
 pydantic
-
-# Deployment
 uvicorn
+
+# LLM API
+groq
